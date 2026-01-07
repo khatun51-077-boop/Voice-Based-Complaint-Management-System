@@ -20,7 +20,7 @@ const escalatedEl = document.getElementById("escalatedComplaints");
 const resolvedEl = document.getElementById("resolvedComplaints");
 
 
-// Load complaints from Firestore
+
 async function loadComplaints() {
   complaintsList.innerHTML = "";
   const snapshot = await getDocs(collection(db, "complaints"));
@@ -42,7 +42,7 @@ async function loadComplaints() {
     const now = new Date();
     const elapsedHours = (now - createdAt)/1000/60/60;
 
-    // Auto escalation after 1 hour
+    
     if(elapsedHours > 1 && data.status === "Pending" && !data.escalated){
       await updateDoc(doc(db,"complaints",docSnap.id), { status: "Escalated", escalated: true });
       data.status = "Escalated"; // Update locally for UI
@@ -59,7 +59,7 @@ async function loadComplaints() {
       <button class="btn-delete">Delete</button>
     `;
 
-    // Button events
+  
     div.querySelector(".btn-update").addEventListener("click", async ()=>{
       await updateDoc(doc(db,"complaints",docSnap.id), { status: "Pending", escalated: false });
       loadComplaints();
@@ -86,6 +86,7 @@ async function loadComplaints() {
   resolvedEl.textContent = `Resolved: ${resolved}`;
 }
 
-// Initial load + auto refresh
+
 loadComplaints();
+
 setInterval(loadComplaints, 60000);
