@@ -52,7 +52,7 @@ async function updateCounter() {
   }
 }
 updateCounter();
-setInterval(updateCounter, 30000); // refresh every 30s
+setInterval(updateCounter, 30000); 
 
 
 function showStatus(message, color = "blue") {
@@ -141,3 +141,4 @@ if ("webkitSpeechRecognition" in window) {
   voiceBtn.textContent = "Mic Not Supported";
 
 }
+
