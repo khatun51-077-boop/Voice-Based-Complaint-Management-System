@@ -45,7 +45,7 @@ async function loadComplaints() {
     
     if(elapsedHours > 1 && data.status === "Pending" && !data.escalated){
       await updateDoc(doc(db,"complaints",docSnap.id), { status: "Escalated", escalated: true });
-      data.status = "Escalated"; // Update locally for UI
+      data.status = "Escalated"; 
     }
 
     div.innerHTML = `
@@ -90,3 +90,4 @@ async function loadComplaints() {
 loadComplaints();
 
 setInterval(loadComplaints, 60000);
+
