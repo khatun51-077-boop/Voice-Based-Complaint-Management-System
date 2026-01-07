@@ -1,6 +1,86 @@
-<DOCTYPE html>
-  <html>
-    <body>
-      project uploaded
-    </body>
-  </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Voice Complaint — Tech</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">🔊</div>
+        <div>
+          <h1>Voice Complaint</h1>
+          <p class="tag">Your voice. Our action.</p>
+        </div>
+      </div>
+      <div class="topcontrols">
+        <div id="counter" class="counter">Total: 0</div>
+        <a class="admin-link" href="admin.html" target="_blank"><i class="fa fa-user-shield"></i> Admin</a>
+      </div>
+    </header>
+
+    <section class="card glass">
+      <div class="card-header">
+        <h2>Submit Complaint</h2>
+        <span class="hint">Bangla / English voice supported</span>
+      </div>
+
+      <form id="complaintForm" class="form">
+        <div class="row">
+          <select id="langSelect" class="input">
+            <option value="bn">বাংলা (Bangla)</option>
+            <option value="en" selected>English</option>
+          </select>
+
+          <select id="category" class="input">
+            <option value="General">General</option>
+            <option value="IT">IT</option>
+            <option value="Infrastructure">Infrastructure</option>
+            <option value="Security">Security</option>
+          </select>
+        </div>
+
+        <textarea id="complaintInput" class="input textarea" placeholder="Type or press Speak(টাইপ করুন অথবা স্পিক টিপুন) — explain your complaint..."></textarea>
+
+        <div class="row">
+          <select id="priority" class="input small">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+
+          <label class="checkbox">
+            <input type="checkbox" id="anonymous"/>
+            <span>Submit anonymously</span>
+          </label>
+        </div>
+
+        <div class="row buttons">
+          <button type="button" id="voiceBtn" class="btn mic">
+            <i class="fa fa-microphone"></i> <span>Speak</span>
+          </button>
+
+          <button type="submit" class="btn primary">
+            <i class="fa fa-paper-plane"></i> Submit
+          </button>
+        </div>
+      </form>
+
+      <div class="result-row">
+        <div id="status" class="status"></div>
+        <div id="tracking" class="tracking"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Toast container -->
+  <div id="toast" class="toast"></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
