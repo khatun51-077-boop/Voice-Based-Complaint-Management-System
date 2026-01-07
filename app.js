@@ -13,7 +13,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// DOM
+
 const form = document.getElementById("complaintForm");
 const complaintInput = document.getElementById("complaintInput");
 const statusDiv = document.getElementById("status");
@@ -26,7 +26,7 @@ const trackingDiv = document.getElementById("tracking");
 const counterEl = document.getElementById("counter");
 const toast = document.getElementById("toast");
 
-// small helper: toast (top-right)
+
 function toastShow(message, tone = "info") {
   const el = document.createElement("div");
   el.className = "toast-item";
@@ -42,7 +42,7 @@ function toastShow(message, tone = "info") {
   setTimeout(()=>{ el.style.opacity = "0"; setTimeout(()=>el.remove(),300); }, 3500);
 }
 
-// update total counter (simple: count docs)
+
 async function updateCounter() {
   try {
     const snap = await getDocs(collection(db, "complaints"));
@@ -54,7 +54,7 @@ async function updateCounter() {
 updateCounter();
 setInterval(updateCounter, 30000); // refresh every 30s
 
-// Status helper (in-card)
+
 function showStatus(message, color = "blue") {
   statusDiv.textContent = message;
   statusDiv.style.color = color === "green" ? "#065f46" : color === "red" ? "#b91c1c" : "#0ea5e9";
@@ -66,7 +66,7 @@ function showStatus(message, color = "blue") {
   setTimeout(()=>{ statusDiv.textContent = ""; statusDiv.style.background = "transparent"; }, 3500);
 }
 
-// submit handler
+
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const text = complaintInput.value.trim();
@@ -87,7 +87,7 @@ form.addEventListener("submit", async (e) => {
       escalated: false
     });
 
-    // show tracking + copy
+    
     trackingDiv.innerHTML = 'Tracking: <strong>${docRef.id}</strong> <button id="copyBtn" class="btn small">Copy</button>';
     const copyBtn = document.getElementById("copyBtn");
     copyBtn.style.marginLeft = "8px";
@@ -104,7 +104,7 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-// Voice recognition (webkit)
+
 let recognition;
 if ("webkitSpeechRecognition" in window) {
   recognition = new webkitSpeechRecognition();
@@ -139,4 +139,5 @@ if ("webkitSpeechRecognition" in window) {
 } else {
   voiceBtn.disabled = true;
   voiceBtn.textContent = "Mic Not Supported";
+
 }
